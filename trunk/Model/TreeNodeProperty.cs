@@ -153,14 +153,15 @@
                     //"System.Nullable`1[[System.DateTime, mscorlib
                     //it's lame method but I have no another idea.
                     possibleTypes[0] = Type.GetType(typeName);
-                    possibleTypes[1] = null;
+                    if (possibleTypes.Length > 1)
+                        possibleTypes[1] = null;
                     return new NullableGenericProperty(possibleTypes, name, val);
-
                 }
                 else
                 {
                     possibleTypes[0] = Type.GetType("System.String");
-                    possibleTypes[1] = null;
+                    if (possibleTypes.Length > 1)
+                        possibleTypes[1] = null;
                     return new NullablePrimitiveProperty(possibleTypes, name, val);
                 }
             }
