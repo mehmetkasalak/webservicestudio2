@@ -29,7 +29,7 @@
     <ManifestCertificateThumbprint>7065B9A9B94CEF08BAE40C466EF1D8E3D83DAC8A</ManifestCertificateThumbprint>
     <ManifestKeyFile>WebServiceStudio_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>http://localhost/WebServiceStudio/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
