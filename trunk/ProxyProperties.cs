@@ -18,6 +18,8 @@ namespace WebServiceStudio
         private int timeout;
         private static string typeNotFoundMessage = "ProxyPropertiesType {0} specified in WebServiceStudio.exe.options is not found";
         private bool useCookieContainer;
+        private static string NTLM = "NTLM";
+        private static string BASIC = "Basic";
 
         public ProxyProperties()
         {
@@ -93,27 +95,38 @@ namespace WebServiceStudio
 
         private ICredentials ReadCredentials(ICredentials credentials, Uri uri, bool useDefaultCredentials, string userName, string password)
         {
-            if ((credentials != null) && !(credentials is CredentialCache))
-            {
-                return credentials;
-            }
             CredentialCache cache = credentials as CredentialCache;
+
             if (cache == null)
             {
                 cache = new CredentialCache();
             }
             if (useDefaultCredentials)
             {
-                cache.Add(uri, "NTLM", (NetworkCredential)CredentialCache.DefaultCredentials);
+                if (cache.GetCredential(uri, NTLM) == null)
+                {
+                    cache.Add(uri, NTLM, (NetworkCredential)CredentialCache.DefaultCredentials);
+                }
             }
             else
             {
-                cache.Remove(uri, "NTLM");
+                if (cache.GetCredential(uri, NTLM) != null)
+                {
+                    cache.Remove(uri, NTLM);
+                }
             }
-            if ((((userName != null) && (userName.Length > 0)) || ((password != null) && (password.Length > 0))) && (cache.GetCredential(uri, "Basic") == null))
+            if ((((userName != null) && (userName.Length > 0)) || ((password != null) && (password.Length > 0))))
             {
-                NetworkCredential cred = new NetworkCredential("", "");
-                cache.Add(uri, "Basic", cred);
+                if (cache.GetCredential(uri, BASIC) == null)
+                {
+                    NetworkCredential cred = new NetworkCredential(userName, password);
+                    cache.Add(uri, BASIC, cred);
+                }
+                else
+                {
+                    cache.GetCredential(uri, BASIC).UserName = userName;
+                    cache.GetCredential(uri, BASIC).Password = password;
+                }
             }
             return cache;
         }
@@ -121,19 +134,19 @@ namespace WebServiceStudio
         private void SetCredentialValues(ICredentials credentials, Uri uri, out bool useDefaultCredentials, out string userName, out string password)
         {
             useDefaultCredentials = false;
-            userName = "";
-            password = "";
+            userName = string.Empty;
+            password = string.Empty;
             if (((credentials == null) || (credentials is CredentialCache)) && (credentials != null))
             {
                 NetworkCredential credential = null;
                 CredentialCache cache = credentials as CredentialCache;
                 if (cache != null)
                 {
-                    if (CredentialCache.DefaultCredentials == cache.GetCredential(uri, "NTLM"))
+                    if (CredentialCache.DefaultCredentials == cache.GetCredential(uri, NTLM))
                     {
                         useDefaultCredentials = true;
                     }
-                    credential = cache.GetCredential(uri, "Basic");
+                    credential = cache.GetCredential(uri, BASIC);
                 }
                 else if (credentials == CredentialCache.DefaultCredentials)
                 {
@@ -279,4 +292,3 @@ namespace WebServiceStudio
         }
     }
 }
-
