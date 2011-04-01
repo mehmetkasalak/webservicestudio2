@@ -29,6 +29,8 @@ namespace WebServiceStudio.Dialogs
             Control.CheckForIllegalCrossThreadCalls = false;
             richWsdl.Font = Configuration.MasterConfig.UiSettings.WsdlFont;
             comboEndPointUri.Items.AddRange(Configuration.MasterConfig.InvokeSettings.RecentlyUsedUris);
+            if (comboEndPointUri.Items.Count > 0)
+                comboEndPointUri.SelectedIndex = 0;
             richMessage.Font = Configuration.MasterConfig.UiSettings.MessageFont;
             richRequest.Font = Configuration.MasterConfig.UiSettings.ReqRespFont;
             richResponse.Font = Configuration.MasterConfig.UiSettings.ReqRespFont;
@@ -128,12 +130,16 @@ namespace WebServiceStudio.Dialogs
             if (!string.IsNullOrEmpty(textBoxFind.Text))
             {
                 string text = textBoxFind.Text.Trim();
-                
+
                 if (!stringToFind.Equals(text))
                     richWsdl.SelectionStart = 0;
-                
+
                 stringToFind = text;
                 Find();
+            }
+            else
+            {
+                textBoxFind.Focus();
             }
         }
 
@@ -714,6 +720,24 @@ namespace WebServiceStudio.Dialogs
                 buttonFind_Click(sender, null);
                 e.Handled = true;
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (buttonFind.Enabled)
+            {
+                if (keyData == (Keys.Control | Keys.F | Keys.Shift))
+                {
+                    buttonFind_Click(this, null);
+                    return true;
+                }
+                else if (keyData == (Keys.Control | Keys.F))
+                {
+                    textBoxFind.Focus();
+                    return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
