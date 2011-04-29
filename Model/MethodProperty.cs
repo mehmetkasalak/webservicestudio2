@@ -1,11 +1,10 @@
-﻿namespace WebServiceStudio
-{
-    using System;
-    using System.Collections;
-    using System.Reflection;
-    using System.Web.Services.Protocols;
-    using System.Windows.Forms;
+﻿using System.Collections;
+using System.Reflection;
+using System.Web.Services.Protocols;
+using System.Windows.Forms;
 
+namespace WebServiceStudio
+{
     internal class MethodProperty : TreeNodeProperty
     {
         private bool isIn;
@@ -32,7 +31,7 @@
 
         private void AddBody()
         {
-            TreeNode parentNode = base.TreeNode.Nodes.Add("Body");
+            TreeNode parentNode = base.TreeNode.Nodes.Add("Body", "Body");
             if (!this.isIn && (this.method.ReturnType != typeof(void)))
             {
                 System.Type type = (this.result != null) ? this.result.GetType() : this.method.ReturnType;

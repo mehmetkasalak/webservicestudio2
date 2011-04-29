@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Text;
@@ -31,7 +28,7 @@ namespace WebServiceStudio.Dialogs
                 if (attributes.Length > 0)
                 {
                     AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
+                    if (titleAttribute.Title != string.Empty)
                     {
                         return titleAttribute.Title;
                     }
@@ -58,18 +55,22 @@ namespace WebServiceStudio.Dialogs
                 {
                     desc.Append(((AssemblyDescriptionAttribute)attributes[0]).Description);
                 }
-                desc.Append(" by Adam Lesień (adam.lesien@gmail.com)");
-                desc.Append(Environment.NewLine);
-                desc.Append("based on WebServiceStudio by Adnan Masood (adnanmasood@gmail.com)");
-                desc.Append(Environment.NewLine);
-                desc.Append(Environment.NewLine);
-                desc.Append("+ UI improvement");
-                desc.Append(Environment.NewLine);
-                desc.Append("+ Generic nullable types enabled");
-                desc.Append(Environment.NewLine);
-                desc.Append("+ Client certificate support");
-                desc.Append(Environment.NewLine);
-                desc.Append("+ Some refactoring");
+                desc.AppendLine(" by Adam Lesień (adam.lesien@gmail.com)"); 
+                desc.AppendLine("based on WebServiceStudio by Adnan Masood (adnanmasood@gmail.com)");
+                desc.AppendLine();
+                desc.AppendLine("+ UI improvement"); 
+                desc.AppendLine("+ Generic nullable types enabled"); 
+                desc.AppendLine("+ Client certificate support"); 
+                desc.AppendLine("+ Some refactoring"); 
+                desc.AppendLine("+ Macro player, syntax:");
+                desc.AppendLine();
+                desc.AppendLine("     WSDL uri - gets wdsl"); 
+                desc.AppendLine("     SET class field value - sets a value of the field in given class"); 
+                desc.AppendLine("     INVOKE method - invokes a method"); 
+                desc.AppendLine("     COPY srcClass srcField dstClass dstField - copies value of output tree to input tree"); 
+                desc.AppendLine("     LOGC comment - saves a comment in a log file (no white spaces in comment)"); 
+                desc.AppendLine("     LOGO class field - saves a value of output field of the class in a log file"); 
+                desc.AppendLine("     LOGT METHODS/INPUT/OUTPUT - saves selected tree in a log file");
                 return desc.ToString();
             }
         }
@@ -81,7 +82,7 @@ namespace WebServiceStudio.Dialogs
                 object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyProductAttribute)attributes[0]).Product;
             }
@@ -94,7 +95,7 @@ namespace WebServiceStudio.Dialogs
                 object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
             }
@@ -107,7 +108,7 @@ namespace WebServiceStudio.Dialogs
                 object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }

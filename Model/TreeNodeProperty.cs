@@ -1,21 +1,22 @@
-﻿namespace WebServiceStudio
-{
-    using System;
-    using System.Collections;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Reflection;
-    using System.Web.Services.Protocols;
-    using System.Windows.Forms;
-    using System.Xml;
-    using System.Xml.Serialization;
+﻿using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Data;
+using System.Reflection;
+using System.Web.Services.Protocols;
+using System.Xml;
+using System.Xml.Serialization;
 
+namespace WebServiceStudio
+{
     internal class TreeNodeProperty
     {
         private static Hashtable includedTypesLookup = new Hashtable();
         public string Name;
         private static System.Type[] systemTypes = new System.Type[] { 
-            typeof(bool), typeof(byte), typeof(byte[]), typeof(sbyte), typeof(short), typeof(int), typeof(long), typeof(float), typeof(double), typeof(string), typeof(string[]), typeof(DateTime), typeof(TimeSpan), typeof(XmlElement), typeof(XmlAttribute), typeof(XmlNode[]), 
+            typeof(bool), typeof(byte), typeof(byte[]), typeof(sbyte), typeof(short), typeof(int), typeof(long), 
+            typeof(float), typeof(double), typeof(string), typeof(string[]), 
+            typeof(DateTime), typeof(TimeSpan), typeof(XmlElement), typeof(XmlAttribute), typeof(XmlNode[]), 
             typeof(object[])
          };
         public System.Windows.Forms.TreeNode TreeNode;
@@ -337,19 +338,22 @@
                 }
                 this.TreeNode.Remove();
             }
-            this.TreeNode = new System.Windows.Forms.TreeNode(this.ToString());
-            this.TreeNode.Tag = this;
             if (parentNode != null)
             {
                 if (index < 0)
                 {
-                    parentNode.Nodes.Add(this.TreeNode);
+                    this.TreeNode = parentNode.Nodes.Add(this.ToString(), this.ToString());
                 }
                 else
                 {
-                    parentNode.Nodes.Insert(index, this.TreeNode);
+                    this.TreeNode = parentNode.Nodes.Insert(index, this.ToString(), this.ToString());
                 }
             }
+            else
+            {
+                this.TreeNode = new System.Windows.Forms.TreeNode(this.ToString());
+            }
+            this.TreeNode.Tag = this;
             this.CreateChildren();
         }
 
