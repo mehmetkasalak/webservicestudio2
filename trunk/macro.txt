@@ -1,0 +1,50 @@
+#WSDL http://srv_webservices/pbcash-drev/
+
+LOGC testing:PBCASH
+LOGC ===================
+
+WSDL http://10.27.1.190/pbcash/PBCASH.asmx
+LOGT METHODS
+
+LOGC Searching:LESIEN,PB
+LOGC ===================
+
+SET CustomerSearch familyName LESIEN
+SET CustomerSearch name PB
+
+LOGT INPUT
+
+INVOKE CustomerSearch
+
+LOGT OUTPUT
+
+#
+#LOGC Customer
+#LOGO CustomerSearch CustomerId
+#
+#COPY CustomerSearch CustomerId AccountList customerId
+#COPY CustomerSearch CustomerId AccountDeposit customerId
+#COPY CustomerSearch CustomerId AccountWithdraw customerId
+#
+#INVOKE AccountList 
+#
+#LOGC Account
+#LOGO AccountList ContractNo 
+#
+#COPY AccountList ContractNo AccountRestrictions accountNo
+#COPY AccountList ContractNo AccountDeposit accountNo
+#COPY AccountList ContractNo AccountWithdraw accountNo
+#COPY AccountList ContractNo AccountEntryAnnulment accountNo
+#COPY AccountList ContractNo AccountCommisionAnnulment accountNo
+#COPY AccountList ContractNo AccountOperationList accountNo
+#COPY AccountList ContractNo AccountAddress accountNo
+#
+#SET AccountOperationList date 2011-04-27
+#SET AccountCommisionAnnulment operationId 82
+#SET AccountDeposit currency PLN
+#SET AccountWithdraw currency PLN
+#SET AccountDeposit amount 100
+#SET AccountDeposit getCharge true
+#
+#INVOKE AccountRestrictions
+#

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
@@ -10,8 +8,8 @@ using System.IO;
 using System.Threading;
 using System.Web.Services.Protocols;
 using System.Net;
-using WebServiceStudio.Dialogs;
 using System.Xml.Serialization;
+using WebServiceStudio.Utils;
 
 namespace WebServiceStudio.Dialogs
 {
@@ -20,6 +18,8 @@ namespace WebServiceStudio.Dialogs
         private static NewMainForm newMainForm;
         private Wsdl wsdl = null;
         private string stringToFind = string.Empty;
+        private string macroFile = string.Empty;
+        private MacroPlayer.MacroCallbackType macroCallback;
 
         public NewMainForm()
         {
@@ -81,12 +81,12 @@ namespace WebServiceStudio.Dialogs
                     }
                 }
                 Utils.File.SaveFile(this, str + "." + wsdl.ProxyFileExtension, wsdl.ProxyCode);
-                Utils.File.SaveFile(this, str + "Client." + wsdl.ProxyFileExtension, 
-                    Script.GetUsingCode(wsdl.WsdlProperties.Language) + "\n" + GenerateClientCode() + "\n" + 
+                Utils.File.SaveFile(this, str + "Client." + wsdl.ProxyFileExtension,
+                    Script.GetUsingCode(wsdl.WsdlProperties.Language) + "\n" + GenerateClientCode() + "\n" +
                     Script.GetDumpCode(wsdl.WsdlProperties.Language));
             }
         }
-        
+
         private string GenerateClientCode()
         {
             Script script = new Script(wsdl.ProxyNamespace, "MainClass");
@@ -323,7 +323,7 @@ namespace WebServiceStudio.Dialogs
                 {
                     if (TreeNodeProperty.IsWebService(type))
                     {
-                        TreeNode node = treeMethods.Nodes.Add(type.Name);
+                        TreeNode node = treeMethods.Nodes.Add(type.Name, type.Name);
                         HttpWebClientProtocol proxy = (HttpWebClientProtocol)Activator.CreateInstance(type);
                         ProxyProperty property = new ProxyProperty(proxy);
                         property.RecreateSubtree(null);
@@ -339,7 +339,7 @@ namespace WebServiceStudio.Dialogs
                         {
                             if (TreeNodeProperty.IsWebMethod(info))
                             {
-                                node.Nodes.Add(info.Name).Tag = info;
+                                node.Nodes.Add(info.Name, info.Name).Tag = info;
                             }
                         }
                     }
@@ -361,6 +361,8 @@ namespace WebServiceStudio.Dialogs
                 Configuration.MasterConfig.InvokeSettings.AddUri(this.comboEndPointUri.Text);
                 comboEndPointUri.Items.Clear();
                 comboEndPointUri.Items.AddRange(Configuration.MasterConfig.InvokeSettings.RecentlyUsedUris);
+                if (macroCallback != null)
+                    macroCallback.Invoke();
             }
         }
         private delegate void WsdlGenerationDoneCallback(bool genDone);
@@ -390,6 +392,8 @@ namespace WebServiceStudio.Dialogs
                 propOutput.SelectedObject = null;
                 treeOutput.Nodes.Clear();
                 InvokeWebMethod();
+                if (macroCallback != null)
+                    macroCallback.Invoke();
             }
             finally
             {
@@ -739,5 +743,6 @@ namespace WebServiceStudio.Dialogs
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
     }
 }

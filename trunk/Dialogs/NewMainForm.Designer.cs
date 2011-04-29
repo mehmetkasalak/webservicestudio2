@@ -38,6 +38,8 @@
             this.buttonOutputCopy = new System.Windows.Forms.ToolStripButton();
             this.buttonFind = new System.Windows.Forms.ToolStripButton();
             this.textBoxFind = new System.Windows.Forms.ToolStripTextBox();
+            this.buttonMacroRecord = new System.Windows.Forms.ToolStripButton();
+            this.buttonMacroPlay = new System.Windows.Forms.ToolStripButton();
             this.toolStripWsdl = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.comboEndPointUri = new System.Windows.Forms.ToolStripComboBox();
@@ -117,10 +119,12 @@
             this.buttonPaste,
             this.buttonOutputCopy,
             this.buttonFind,
-            this.textBoxFind});
+            this.textBoxFind,
+            this.buttonMacroRecord,
+            this.buttonMacroPlay});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Size = new System.Drawing.Size(775, 25);
+            this.toolStripMenu.Size = new System.Drawing.Size(912, 25);
             this.toolStripMenu.TabIndex = 0;
             this.toolStripMenu.Text = "toolStrip1";
             // 
@@ -207,6 +211,15 @@
             this.textBoxFind.Size = new System.Drawing.Size(250, 25);
             this.textBoxFind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFind_KeyPress);
             // 
+            // buttonMacroPlay
+            // 
+            this.buttonMacroPlay.Image = ((System.Drawing.Image)(resources.GetObject("buttonMacroPlay.Image")));
+            this.buttonMacroPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonMacroPlay.Name = "buttonMacroPlay";
+            this.buttonMacroPlay.Size = new System.Drawing.Size(79, 22);
+            this.buttonMacroPlay.Text = "Play Macro";
+            this.buttonMacroPlay.Click += new System.EventHandler(this.buttonMacroPlay_Click);
+            // 
             // toolStripWsdl
             // 
             this.toolStripWsdl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -216,7 +229,7 @@
             this.buttonBrowse});
             this.toolStripWsdl.Location = new System.Drawing.Point(0, 25);
             this.toolStripWsdl.Name = "toolStripWsdl";
-            this.toolStripWsdl.Size = new System.Drawing.Size(775, 25);
+            this.toolStripWsdl.Size = new System.Drawing.Size(912, 25);
             this.toolStripWsdl.TabIndex = 1;
             this.toolStripWsdl.Text = "toolStrip1";
             // 
@@ -269,7 +282,7 @@
             this.tabMain.Location = new System.Drawing.Point(0, 50);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(775, 636);
+            this.tabMain.Size = new System.Drawing.Size(912, 636);
             this.tabMain.TabIndex = 2;
             this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabMain_SelectedIndexChanged);
             // 
@@ -280,7 +293,7 @@
             this.tabPageInvoke.Controls.Add(this.panelLeftInvoke);
             this.tabPageInvoke.Location = new System.Drawing.Point(4, 22);
             this.tabPageInvoke.Name = "tabPageInvoke";
-            this.tabPageInvoke.Size = new System.Drawing.Size(767, 610);
+            this.tabPageInvoke.Size = new System.Drawing.Size(904, 610);
             this.tabPageInvoke.TabIndex = 0;
             this.tabPageInvoke.Tag = "";
             this.tabPageInvoke.Text = "Invoke";
@@ -301,7 +314,7 @@
             // splitContainerInvoke.Panel2
             // 
             this.splitContainerInvoke.Panel2.Controls.Add(this.splitContainerInvokeDown);
-            this.splitContainerInvoke.Size = new System.Drawing.Size(553, 610);
+            this.splitContainerInvoke.Size = new System.Drawing.Size(690, 610);
             this.splitContainerInvoke.SplitterDistance = 306;
             this.splitContainerInvoke.TabIndex = 5;
             // 
@@ -322,8 +335,8 @@
             // 
             this.splitContainerInvokeUp.Panel2.Controls.Add(this.labelInputValue);
             this.splitContainerInvokeUp.Panel2.Controls.Add(this.propInput);
-            this.splitContainerInvokeUp.Size = new System.Drawing.Size(540, 303);
-            this.splitContainerInvokeUp.SplitterDistance = 270;
+            this.splitContainerInvokeUp.Size = new System.Drawing.Size(677, 303);
+            this.splitContainerInvokeUp.SplitterDistance = 338;
             this.splitContainerInvokeUp.TabIndex = 12;
             // 
             // treeInput
@@ -334,7 +347,7 @@
             this.treeInput.HideSelection = false;
             this.treeInput.Location = new System.Drawing.Point(0, 22);
             this.treeInput.Name = "treeInput";
-            this.treeInput.Size = new System.Drawing.Size(270, 278);
+            this.treeInput.Size = new System.Drawing.Size(338, 278);
             this.treeInput.TabIndex = 11;
             this.treeInput.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeInput_AfterSelect);
             // 
@@ -366,7 +379,7 @@
             this.propInput.Location = new System.Drawing.Point(0, 22);
             this.propInput.Name = "propInput";
             this.propInput.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propInput.Size = new System.Drawing.Size(266, 278);
+            this.propInput.Size = new System.Drawing.Size(335, 278);
             this.propInput.TabIndex = 13;
             this.propInput.ToolbarVisible = false;
             // 
@@ -388,8 +401,8 @@
             this.splitContainerInvokeDown.Panel2.Controls.Add(this.buttonInvoke);
             this.splitContainerInvokeDown.Panel2.Controls.Add(this.labelOutputValue);
             this.splitContainerInvokeDown.Panel2.Controls.Add(this.propOutput);
-            this.splitContainerInvokeDown.Size = new System.Drawing.Size(550, 298);
-            this.splitContainerInvokeDown.SplitterDistance = 272;
+            this.splitContainerInvokeDown.Size = new System.Drawing.Size(687, 298);
+            this.splitContainerInvokeDown.SplitterDistance = 339;
             this.splitContainerInvokeDown.TabIndex = 11;
             // 
             // labelOutput
@@ -408,7 +421,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.treeOutput.Location = new System.Drawing.Point(0, 25);
             this.treeOutput.Name = "treeOutput";
-            this.treeOutput.Size = new System.Drawing.Size(272, 273);
+            this.treeOutput.Size = new System.Drawing.Size(339, 273);
             this.treeOutput.TabIndex = 6;
             this.treeOutput.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeOutput_AfterSelect);
             // 
@@ -417,7 +430,7 @@
             this.buttonInvoke.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInvoke.AutoSize = true;
             this.buttonInvoke.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonInvoke.Location = new System.Drawing.Point(174, 0);
+            this.buttonInvoke.Location = new System.Drawing.Point(244, 0);
             this.buttonInvoke.Name = "buttonInvoke";
             this.buttonInvoke.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.buttonInvoke.Size = new System.Drawing.Size(90, 23);
@@ -444,7 +457,7 @@
             this.propOutput.Location = new System.Drawing.Point(0, 25);
             this.propOutput.Name = "propOutput";
             this.propOutput.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propOutput.Size = new System.Drawing.Size(264, 273);
+            this.propOutput.Size = new System.Drawing.Size(334, 273);
             this.propOutput.TabIndex = 6;
             this.propOutput.ToolbarVisible = false;
             // 
@@ -485,7 +498,7 @@
             this.tabPageRaw.Controls.Add(this.panelLeftRaw);
             this.tabPageRaw.Location = new System.Drawing.Point(4, 22);
             this.tabPageRaw.Name = "tabPageRaw";
-            this.tabPageRaw.Size = new System.Drawing.Size(767, 610);
+            this.tabPageRaw.Size = new System.Drawing.Size(904, 610);
             this.tabPageRaw.TabIndex = 1;
             this.tabPageRaw.Text = "Request/Response";
             // 
@@ -503,7 +516,7 @@
             this.panelRightRaw.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightRaw.Location = new System.Drawing.Point(220, 0);
             this.panelRightRaw.Name = "panelRightRaw";
-            this.panelRightRaw.Size = new System.Drawing.Size(547, 610);
+            this.panelRightRaw.Size = new System.Drawing.Size(684, 610);
             this.panelRightRaw.TabIndex = 1;
             // 
             // splitContainerReqRes
@@ -525,7 +538,7 @@
             this.splitContainerReqRes.Panel2.Controls.Add(this.labelResponse);
             this.splitContainerReqRes.Panel2.Controls.Add(this.buttonSend);
             this.splitContainerReqRes.Panel2.Controls.Add(this.richResponse);
-            this.splitContainerReqRes.Size = new System.Drawing.Size(544, 610);
+            this.splitContainerReqRes.Size = new System.Drawing.Size(681, 610);
             this.splitContainerReqRes.SplitterDistance = 305;
             this.splitContainerReqRes.TabIndex = 5;
             // 
@@ -544,7 +557,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.richRequest.Location = new System.Drawing.Point(0, 22);
             this.richRequest.Name = "richRequest";
-            this.richRequest.Size = new System.Drawing.Size(544, 280);
+            this.richRequest.Size = new System.Drawing.Size(681, 280);
             this.richRequest.TabIndex = 1;
             this.richRequest.Text = "";
             this.richRequest.WordWrap = false;
@@ -561,7 +574,7 @@
             // 
             this.buttonSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSend.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonSend.Location = new System.Drawing.Point(450, 3);
+            this.buttonSend.Location = new System.Drawing.Point(587, 3);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(94, 24);
             this.buttonSend.TabIndex = 0;
@@ -576,7 +589,7 @@
             this.richResponse.Location = new System.Drawing.Point(0, 33);
             this.richResponse.Name = "richResponse";
             this.richResponse.ReadOnly = true;
-            this.richResponse.Size = new System.Drawing.Size(544, 268);
+            this.richResponse.Size = new System.Drawing.Size(681, 268);
             this.richResponse.TabIndex = 2;
             this.richResponse.Text = "";
             this.richResponse.WordWrap = false;
@@ -609,7 +622,7 @@
             this.tabPageWsdl.Controls.Add(this.panelLeftWsdl);
             this.tabPageWsdl.Location = new System.Drawing.Point(4, 22);
             this.tabPageWsdl.Name = "tabPageWsdl";
-            this.tabPageWsdl.Size = new System.Drawing.Size(767, 610);
+            this.tabPageWsdl.Size = new System.Drawing.Size(904, 610);
             this.tabPageWsdl.TabIndex = 2;
             this.tabPageWsdl.Tag = "";
             this.tabPageWsdl.Text = "WSDLs & Proxy";
@@ -628,7 +641,7 @@
             this.panelRightWsdl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightWsdl.Location = new System.Drawing.Point(220, 0);
             this.panelRightWsdl.Name = "panelRightWsdl";
-            this.panelRightWsdl.Size = new System.Drawing.Size(547, 610);
+            this.panelRightWsdl.Size = new System.Drawing.Size(684, 610);
             this.panelRightWsdl.TabIndex = 1;
             // 
             // richWsdl
@@ -638,7 +651,7 @@
             this.richWsdl.Location = new System.Drawing.Point(0, 0);
             this.richWsdl.Name = "richWsdl";
             this.richWsdl.ReadOnly = true;
-            this.richWsdl.Size = new System.Drawing.Size(547, 610);
+            this.richWsdl.Size = new System.Drawing.Size(684, 610);
             this.richWsdl.TabIndex = 0;
             this.richWsdl.Text = "";
             this.richWsdl.WordWrap = false;
@@ -666,7 +679,7 @@
             this.tabPageMessage.Controls.Add(this.richMessage);
             this.tabPageMessage.Location = new System.Drawing.Point(4, 22);
             this.tabPageMessage.Name = "tabPageMessage";
-            this.tabPageMessage.Size = new System.Drawing.Size(767, 610);
+            this.tabPageMessage.Size = new System.Drawing.Size(904, 610);
             this.tabPageMessage.TabIndex = 3;
             this.tabPageMessage.Tag = "";
             this.tabPageMessage.Text = "Messages";
@@ -677,7 +690,7 @@
             this.richMessage.Location = new System.Drawing.Point(0, 0);
             this.richMessage.Name = "richMessage";
             this.richMessage.ReadOnly = true;
-            this.richMessage.Size = new System.Drawing.Size(767, 610);
+            this.richMessage.Size = new System.Drawing.Size(904, 610);
             this.richMessage.TabIndex = 0;
             this.richMessage.Text = "";
             // 
@@ -685,7 +698,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 686);
+            this.ClientSize = new System.Drawing.Size(912, 686);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.toolStripWsdl);
             this.Controls.Add(this.toolStripMenu);
@@ -782,5 +795,7 @@
         private System.Windows.Forms.PropertyGrid propOutput;
         private System.Windows.Forms.SplitContainer splitContainerReqRes;
         private System.Windows.Forms.ToolStripTextBox textBoxFind;
+        private System.Windows.Forms.ToolStripButton buttonMacroRecord;
+        private System.Windows.Forms.ToolStripButton buttonMacroPlay;
     }
 }
