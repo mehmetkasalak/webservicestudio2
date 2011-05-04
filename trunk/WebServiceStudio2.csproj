@@ -26,11 +26,11 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>7065B9A9B94CEF08BAE40C466EF1D8E3D83DAC8A</ManifestCertificateThumbprint>
-    <ManifestKeyFile>WebServiceStudio_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>D66E60B4167CE1296D7DE24E38A051F4CB0D6701</ManifestCertificateThumbprint>
+    <ManifestKeyFile>WebServiceStudio2_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>false</SignManifests>
-    <PublishUrl>http://localhost/WebServiceStudio/</PublishUrl>
+    <PublishUrl>http://srv_env/Tools/WebServiceStudio2/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -40,8 +40,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>2.3.0.%2a</ApplicationVersion>
+    <ApplicationRevision>11</ApplicationRevision>
+    <ApplicationVersion>2.4.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -288,6 +288,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WebServiceStudio2_TemporaryKey.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -128,7 +128,16 @@ namespace WebServiceStudio.Dialogs
                     if (string.Compare(field, tnp.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
                         treeOutput.SelectedNode = tn;
-                        return (tn.Tag as ClassProperty).InternalValue.ToString();
+
+                        ClassProperty cp = tn.Tag as ClassProperty;
+                        if (cp != null)
+                            return cp.InternalValue.ToString();
+
+                        PrimitiveProperty pp = tn.Tag as PrimitiveProperty;
+                        if (pp != null)
+                            return pp.Value.ToString();
+
+                        throw new ApplicationException("Unsupported type in macroPlayGetValue");
                     }
                 }
                 s = macroPlayGetValue(output, field, tn.Nodes);
