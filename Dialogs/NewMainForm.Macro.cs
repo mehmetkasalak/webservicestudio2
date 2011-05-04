@@ -153,6 +153,12 @@ namespace WebServiceStudio.Dialogs
             return macroPlayGetValue(output, field, treeOutput.Nodes);
         }
 
+        public bool macroPlayTest(string output, string field, string value)
+        {
+            string v = macroPlayGetValue(output, field, treeOutput.Nodes);
+            return (string.Compare(v, value, StringComparison.InvariantCultureIgnoreCase) == 0);
+        }
+
         public string macroPlayLogT(MacroPlayer.Trees t)
         {
             string s = string.Empty;
