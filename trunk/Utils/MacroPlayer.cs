@@ -9,11 +9,12 @@ namespace WebServiceStudio.Utils
     public class MacroPlayer
     {
         public delegate void MacroCallbackType();
-        public enum Commands { WSDL, INVOKE, SET, COPY, LOGC, LOGT, LOGO };
+        public enum Commands { WSDL, INVOKE, SET, COPY, LOGC, LOGT, LOGO, IFGOTO };
         public enum Trees { INPUT, OUTPUT, METHODS };
         private NewMainForm form;
         private string[] tokens;
         private string fileName;
+        private string gotoLabel;
         private StreamWriter fileOutput;
         private Commands? command = null;
         private int nextTokenIndex;
@@ -40,6 +41,13 @@ namespace WebServiceStudio.Utils
                 {
                     if (string.IsNullOrEmpty(tokens[i]))
                         continue;
+
+                    if (!string.IsNullOrEmpty(gotoLabel))
+                    {
+                        if (gotoLabel.Equals(tokens[i]))
+                            gotoLabel = string.Empty;
+                        continue;
+                    }
 
                     switch (command)
                     {
@@ -75,6 +83,18 @@ namespace WebServiceStudio.Utils
                                 form.macroPlayCopy(tokens[i], tokens[i + 1], tokens[i + 2], tokens[i + 3], callback);
                             }
                             return;
+                        case Commands.IFGOTO:
+                            nextTokenIndex = i + 4;
+                            command = null;
+                            if ((i + 3) < tokens.Length)
+                            {
+                                if (form.macroPlayTest(tokens[i], tokens[i + 1], tokens[i + 2]))
+                                {
+                                    gotoLabel = tokens[i + 3];
+                                }
+                            }
+                            i += 3;
+                            continue;
                         case Commands.LOGC:
                             nextTokenIndex = i + 1;
                             command = null;
