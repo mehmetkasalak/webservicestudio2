@@ -9,7 +9,7 @@ namespace WebServiceStudio.Utils
     public class MacroPlayer
     {
         public delegate void MacroCallbackType();
-        public enum Commands { WSDL, INVOKE, SET, COPY, LOGC, LOGT, LOGO, IFGOTO };
+        public enum Commands { WSDL, INVOKE, SET, COPY, LOGC, LOGT, LOGO, GOTO, IFGOTO, ALERT };
         public enum Trees { INPUT, OUTPUT, METHODS };
         private NewMainForm form;
         private string[] tokens;
@@ -94,6 +94,16 @@ namespace WebServiceStudio.Utils
                                 }
                             }
                             i += 3;
+                            continue;
+                        case Commands.GOTO:
+                            nextTokenIndex = i + 1;
+                            command = null;
+                            gotoLabel = tokens[i];
+                            continue;
+                        case Commands.ALERT:
+                            nextTokenIndex = i + 1;
+                            command = null;
+                            MessageBox.Show(tokens[i], "WSS2 Macro: " + fileName);
                             continue;
                         case Commands.LOGC:
                             nextTokenIndex = i + 1;

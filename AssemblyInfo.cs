@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: System.Reflection.AssemblyVersion("2.4.0.11")]
+[assembly: System.Reflection.AssemblyVersion("2.4.0.12")]
 [assembly: System.Diagnostics.Debuggable(false, true)]
 
 [assembly: AssemblyTitleAttribute("WebServiceStudio2")]

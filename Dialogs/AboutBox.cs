@@ -71,7 +71,9 @@ namespace WebServiceStudio.Dialogs
                 desc.AppendLine("     LOGC comment - saves a comment in a log file (no white spaces in comment)"); 
                 desc.AppendLine("     LOGO class field - saves a value of output field of the class in a log file"); 
                 desc.AppendLine("     LOGT METHODS/INPUT/OUTPUT - saves selected tree in a log file");
+                desc.AppendLine("     GOTO label - goes to label");
                 desc.AppendLine("     IFGOTO class field value label - if field of the class has value goes to label");
+                desc.AppendLine("     ALERT text - shows message box with text");
                 return desc.ToString();
             }
         }
