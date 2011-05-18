@@ -118,6 +118,18 @@ namespace WebServiceStudio.Dialogs
 
         internal string macroPlayGetValue(string output, string field, TreeNodeCollection trc)
         {
+            int counter = field.IndexOf('\'');
+            if (counter > 0)
+            {
+                string m = field.Substring(counter + 1);
+                field = field.Substring(0, counter);
+                counter = Int32.Parse(m);
+            }
+            return macroPlayGetValue(output, field, trc, ref counter);
+        }
+
+        internal string macroPlayGetValue(string output, string field, TreeNodeCollection trc, ref int counter)
+        {
             string s = string.Empty;
 
             foreach (TreeNode tn in trc)
@@ -127,6 +139,11 @@ namespace WebServiceStudio.Dialogs
                 {
                     if (string.Compare(field, tnp.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
                     {
+                        if (counter > 1)
+                        {
+                            counter--;
+                            continue;
+                        }
                         treeOutput.SelectedNode = tn;
 
                         ClassProperty cp = tn.Tag as ClassProperty;
@@ -140,7 +157,7 @@ namespace WebServiceStudio.Dialogs
                         throw new ApplicationException("Unsupported type in macroPlayGetValue");
                     }
                 }
-                s = macroPlayGetValue(output, field, tn.Nodes);
+                s = macroPlayGetValue(output, field, tn.Nodes, ref counter);
 
                 if (!string.IsNullOrEmpty(s))
                     break;
