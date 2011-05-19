@@ -89,6 +89,11 @@ namespace WebServiceStudio.Dialogs
                             object ovalue = value;
                             if (!tnp.Type.Equals(typeof(String)))
                             {
+                                if (tnp.Type.Equals(typeof(DateTime)) && value.Equals("TODAY"))
+                                {
+                                    value = DateTime.Now.ToString("yyyy-MM-dd");
+                                }
+
                                 MethodInfo[] mi = tnp.Type.GetMethods();
                                 foreach (MethodInfo m in mi)
                                 {
