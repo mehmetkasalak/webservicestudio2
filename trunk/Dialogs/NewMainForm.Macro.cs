@@ -66,6 +66,11 @@ namespace WebServiceStudio.Dialogs
             return null;
         }
 
+        internal void macroResetCallback()
+        {
+            macroCallback = null;
+        }
+
         internal void macroPlaySetInput(string method, string field, string value, MacroPlayer.MacroCallbackType macroCallbackType)
         {
             macroCallback = macroCallbackType;
