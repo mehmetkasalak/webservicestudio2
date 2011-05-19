@@ -137,6 +137,8 @@ namespace WebServiceStudio.Utils
             }
             if (fileOutput != null)
                 fileOutput.Close();
+            nextTokenIndex = int.MaxValue;
+            form.macroResetCallback();
         }
 
         private void saveLog(Trees trees)
