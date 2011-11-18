@@ -213,6 +213,7 @@ namespace WebServiceStudio.Dialogs
         {
             buttonSaveAll.Enabled = false;
             buttonFind.Enabled = false;
+            textBoxFind.Enabled = false;
             buttonCopy.Enabled = false;
             buttonPaste.Enabled = false;
             buttonOutputCopy.Enabled = false;
@@ -226,6 +227,9 @@ namespace WebServiceStudio.Dialogs
             richResponse.Clear();
             richResponse.Font = Configuration.MasterConfig.UiSettings.ReqRespFont;
             treeMethods.Nodes.Clear();
+            toolStripButtonSort.Enabled = false;
+            toolStripButtonSearch.Enabled = false;
+            textBoxSearch.Enabled = false;
             TreeNodeProperty.ClearIncludedTypes();
             treeInput.Nodes.Clear();
             treeOutput.Nodes.Clear();
@@ -309,7 +313,11 @@ namespace WebServiceStudio.Dialogs
                 treeWsdl.Nodes.Add("ClientCode").Tag = "Shows client code for all methods accessed in the invoke tab";
                 node.Expand();
                 buttonFind.Enabled = true;
+                textBoxFind.Enabled = true;
                 buttonSaveAll.Enabled = true;
+                toolStripButtonSort.Enabled = true;
+                toolStripButtonSearch.Enabled = true;
+                textBoxSearch.Enabled = true;
             }
         }
 
@@ -742,6 +750,50 @@ namespace WebServiceStudio.Dialogs
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void toolStripButtonSort_Click(object sender, EventArgs e)
+        {
+            treeMethods.Sort();
+        }
+
+        private void textBoxFind_DoubleClick(object sender, EventArgs e)
+        {
+            textBoxFind.Clear();
+        }
+
+        private void toolStripTextBox1_DoubleClick(object sender, EventArgs e)
+        {
+            textBoxSearch.Clear();
+        }
+
+        private void toolStripButtonSearch_Click(object sender, EventArgs e)
+        {
+            if (treeMethods.Nodes.Count == 1)
+            {
+                foreach (TreeNode tn in treeMethods.Nodes[0].Nodes)
+                {
+                    if (tn.Text.ToLowerInvariant().Contains(textBoxSearch.Text.Trim().ToLowerInvariant()))
+                    {
+                        treeMethods.SelectedNode = tn;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void textBoxSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == '\r') || (e.KeyChar == '\n'))
+            {
+                toolStripButtonSearch_Click(sender, null);
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            toolStripButtonSearch_Click(sender, null);
         }
 
     }

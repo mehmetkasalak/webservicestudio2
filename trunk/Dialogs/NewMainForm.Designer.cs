@@ -63,6 +63,10 @@
             this.propOutput = new System.Windows.Forms.PropertyGrid();
             this.splitterInvoke = new System.Windows.Forms.Splitter();
             this.panelLeftInvoke = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSort = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
+            this.textBoxSearch = new System.Windows.Forms.ToolStripTextBox();
             this.treeMethods = new System.Windows.Forms.TreeView();
             this.tabPageRaw = new System.Windows.Forms.TabPage();
             this.splitterRaw = new System.Windows.Forms.Splitter();
@@ -97,6 +101,7 @@
             this.splitContainerInvokeDown.Panel2.SuspendLayout();
             this.splitContainerInvokeDown.SuspendLayout();
             this.panelLeftInvoke.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.tabPageRaw.SuspendLayout();
             this.panelRightRaw.SuspendLayout();
             this.splitContainerReqRes.Panel1.SuspendLayout();
@@ -207,9 +212,17 @@
             // 
             // textBoxFind
             // 
+            this.textBoxFind.CausesValidation = false;
+            this.textBoxFind.Enabled = false;
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.Size = new System.Drawing.Size(250, 25);
+            this.textBoxFind.DoubleClick += new System.EventHandler(this.textBoxFind_DoubleClick);
             this.textBoxFind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFind_KeyPress);
+            // 
+            // buttonMacroRecord
+            // 
+            this.buttonMacroRecord.Name = "buttonMacroRecord";
+            this.buttonMacroRecord.Size = new System.Drawing.Size(23, 22);
             // 
             // buttonMacroPlay
             // 
@@ -472,6 +485,7 @@
             // 
             // panelLeftInvoke
             // 
+            this.panelLeftInvoke.Controls.Add(this.toolStrip1);
             this.panelLeftInvoke.Controls.Add(this.treeMethods);
             this.panelLeftInvoke.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeftInvoke.Location = new System.Drawing.Point(0, 0);
@@ -479,15 +493,57 @@
             this.panelLeftInvoke.Size = new System.Drawing.Size(220, 610);
             this.panelLeftInvoke.TabIndex = 2;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonSort,
+            this.toolStripButtonSearch,
+            this.textBoxSearch});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(220, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonSort
+            // 
+            this.toolStripButtonSort.Enabled = false;
+            this.toolStripButtonSort.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSort.Image")));
+            this.toolStripButtonSort.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSort.Name = "toolStripButtonSort";
+            this.toolStripButtonSort.Size = new System.Drawing.Size(47, 22);
+            this.toolStripButtonSort.Text = "Sort";
+            this.toolStripButtonSort.Click += new System.EventHandler(this.toolStripButtonSort_Click);
+            // 
+            // toolStripButtonSearch
+            // 
+            this.toolStripButtonSearch.Enabled = false;
+            this.toolStripButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSearch.Image")));
+            this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.toolStripButtonSearch.Name = "toolStripButtonSearch";
+            this.toolStripButtonSearch.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButtonSearch.Text = "Search";
+            this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.CausesValidation = false;
+            this.textBoxSearch.Enabled = false;
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(90, 21);
+            this.textBoxSearch.DoubleClick += new System.EventHandler(this.toolStripTextBox1_DoubleClick);
+            this.textBoxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSearch_KeyPress);
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
             // treeMethods
             // 
             this.treeMethods.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.treeMethods.HideSelection = false;
-            this.treeMethods.Location = new System.Drawing.Point(0, 0);
+            this.treeMethods.Location = new System.Drawing.Point(0, 25);
             this.treeMethods.Name = "treeMethods";
-            this.treeMethods.Size = new System.Drawing.Size(220, 610);
+            this.treeMethods.Size = new System.Drawing.Size(220, 585);
             this.treeMethods.TabIndex = 1;
             this.treeMethods.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeMethods_AfterSelect);
             // 
@@ -726,6 +782,9 @@
             this.splitContainerInvokeDown.Panel2.PerformLayout();
             this.splitContainerInvokeDown.ResumeLayout(false);
             this.panelLeftInvoke.ResumeLayout(false);
+            this.panelLeftInvoke.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.tabPageRaw.ResumeLayout(false);
             this.panelRightRaw.ResumeLayout(false);
             this.splitContainerReqRes.Panel1.ResumeLayout(false);
@@ -797,5 +856,9 @@
         private System.Windows.Forms.ToolStripTextBox textBoxFind;
         private System.Windows.Forms.ToolStripButton buttonMacroRecord;
         private System.Windows.Forms.ToolStripButton buttonMacroPlay;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSort;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
+        private System.Windows.Forms.ToolStripTextBox textBoxSearch;
     }
 }

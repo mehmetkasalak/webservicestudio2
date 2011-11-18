@@ -29,6 +29,11 @@ namespace WebServiceStudio.Dialogs
             }
         }
 
+        public void macroPlaySort(MacroPlayer.MacroCallbackType macroCallbackType)
+        {
+            treeMethods.Sort();
+        }
+
         public void macroPlayGetWsdl(string uri, MacroPlayer.MacroCallbackType macroCallbackType)
         {
             macroCallback = macroCallbackType;

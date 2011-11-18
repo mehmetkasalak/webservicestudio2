@@ -74,6 +74,7 @@ namespace WebServiceStudio.Dialogs
                 desc.AppendLine("     GOTO label - goes to label");
                 desc.AppendLine("     IFGOTO class field value label - if field of the class has value goes to label");
                 desc.AppendLine("     ALERT text - shows message box with text");
+                desc.AppendLine("     SORT - sorts methods tree");
                 return desc.ToString();
             }
         }
