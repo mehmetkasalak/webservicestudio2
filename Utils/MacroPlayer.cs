@@ -9,7 +9,7 @@ namespace WebServiceStudio.Utils
     public class MacroPlayer
     {
         public delegate void MacroCallbackType();
-        public enum Commands { WSDL, INVOKE, SET, COPY, LOGC, LOGT, LOGO, GOTO, IFGOTO, ALERT };
+        public enum Commands { WSDL, INVOKE, SET, COPY, LOGC, LOGT, LOGO, GOTO, IFGOTO, ALERT, SORT };
         public enum Trees { INPUT, OUTPUT, METHODS };
         private NewMainForm form;
         private string[] tokens;
@@ -57,6 +57,10 @@ namespace WebServiceStudio.Utils
                                 command = Enum.Parse(typeof(Commands), tokens[i], true) as Commands?;
                             }
                             break;
+                        case Commands.SORT:
+                            command = null;
+                            form.macroPlaySort(callback);
+                            return;
                         case Commands.WSDL:
                             nextTokenIndex = i + 1;
                             command = null;
