@@ -530,7 +530,7 @@
             this.textBoxSearch.CausesValidation = false;
             this.textBoxSearch.Enabled = false;
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(90, 21);
+            this.textBoxSearch.Size = new System.Drawing.Size(90, 25);
             this.textBoxSearch.DoubleClick += new System.EventHandler(this.toolStripTextBox1_DoubleClick);
             this.textBoxSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxSearch_KeyPress);
             this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
@@ -545,6 +545,7 @@
             this.treeMethods.Name = "treeMethods";
             this.treeMethods.Size = new System.Drawing.Size(220, 585);
             this.treeMethods.TabIndex = 1;
+            this.treeMethods.MouseUp += new System.Windows.Forms.MouseEventHandler(this.treeMethods_MouseUp);
             this.treeMethods.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeMethods_AfterSelect);
             // 
             // tabPageRaw

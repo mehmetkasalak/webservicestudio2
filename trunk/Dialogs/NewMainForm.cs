@@ -44,7 +44,7 @@ namespace WebServiceStudio.Dialogs
             Version version = typeof(string).Assembly.GetName().Version;
             newMainForm = new NewMainForm();
             WSSWebRequestCreate.RegisterPrefixes();
-            Application.Run(newMainForm);
+            newMainForm.ShowDialog();
         }
 
         private void buttonAbout_Click(object sender, EventArgs e)
@@ -796,5 +796,58 @@ namespace WebServiceStudio.Dialogs
             toolStripButtonSearch_Click(sender, null);
         }
 
+        private void treeMethods_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                TreeNode nodeUnderMouse = treeMethods.GetNodeAt(e.X, e.Y);
+                if (nodeUnderMouse != null)
+                {
+                    ContextMenu cm = new ContextMenu();
+                    EventHandler eh1 = new EventHandler(delegate(object s, EventArgs ev)
+                    {
+                        Clipboard.SetText(nodeUnderMouse.Text);
+                    });
+                    cm.MenuItems.Add(new MenuItem("Copy name to clipboard", eh1));
+                    EventHandler eh2 = new EventHandler(delegate(object s, EventArgs ev)
+                    {
+                        Clipboard.SetText(createTextDesciption(null, nodeUnderMouse, 0).ToString());
+                    });
+                    cm.MenuItems.Add(new MenuItem("Copy all to clipboard", eh2));
+                    cm.Show(treeMethods, e.Location);
+                }
+            }
+        }
+
+        private StringBuilder createTextDesciption(StringBuilder sb, TreeNode node, int level)
+        {
+            if (treeMethods.SelectedNode != node)
+                treeMethods.SelectedNode = node;
+
+            if (sb == null)
+            {
+                sb = new StringBuilder();
+                sb.AppendLine(node.Text);
+                if (treeInput.Nodes.Count > 0)
+                    createTextDesciption(sb, treeInput.Nodes[0], level + 1);
+            }
+            else
+            {
+                for (int i = 0; i < level; i++)
+                    sb.Append('\t');
+                sb.AppendLine(node.Text);
+            }
+            foreach (TreeNode n in node.Nodes)
+            {
+                createTextDesciption(sb, n, level + 1);
+
+            }
+            if (node.TreeView == treeMethods)
+            {
+                if (treeInput.Nodes.Count > 0)
+                    createTextDesciption(sb, treeInput.Nodes[0], level + 1);
+            }
+            return sb;
+        }
     }
 }
