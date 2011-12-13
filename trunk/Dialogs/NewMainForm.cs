@@ -129,7 +129,7 @@ namespace WebServiceStudio.Dialogs
         {
             if (!string.IsNullOrEmpty(textBoxFind.Text))
             {
-                finder(0, textBoxFind.Text.Trim());
+                finder(-1, textBoxFind.Text.Trim());
             }
             else
             {
@@ -140,7 +140,7 @@ namespace WebServiceStudio.Dialogs
         private void finder(int fromPosition, string text)
         {
 
-                if (fromPosition == 0)
+                if (fromPosition == -1)
                 {
                     if (!stringToFind.Equals(text))
                         richWsdl.SelectionStart = 0;
@@ -819,12 +819,18 @@ namespace WebServiceStudio.Dialogs
                     {
                         Clipboard.SetText(nodeUnderMouse.Text);
                     });
-                    cm.MenuItems.Add(new MenuItem("Copy name to clipboard", eh1));
+                    cm.MenuItems.Add(new MenuItem("Copy \"" + nodeUnderMouse.Text + "\" to clipboard", eh1));
                     EventHandler eh2 = new EventHandler(delegate(object s, EventArgs ev)
                     {
                         Clipboard.SetText(createTextDesciption(null, nodeUnderMouse, 0).ToString());
                     });
                     cm.MenuItems.Add(new MenuItem("Copy all to clipboard", eh2));
+                    EventHandler eh3 = new EventHandler(delegate(object s, EventArgs ev)
+                    {
+                        tabMain.SelectedTab = tabPageWsdl;
+                        finder(0, nodeUnderMouse.Text);
+                    });
+                    cm.MenuItems.Add(new MenuItem("Find in WSDL: \"" + nodeUnderMouse.Text + "\"", eh3));
                     cm.Show(treeMethods, e.Location);
                 }
             }
@@ -865,14 +871,27 @@ namespace WebServiceStudio.Dialogs
         {
             if (!string.IsNullOrEmpty(richWsdl.SelectedText))
             {
+                string text = richWsdl.SelectedText.Trim();
+
                 if (e.Button == MouseButtons.Right)
                 {
                     ContextMenu cm = new ContextMenu();
                     EventHandler eh1 = new EventHandler(delegate(object s, EventArgs ev)
                     {
-                        finder(richWsdl.SelectionStart+1, richWsdl.SelectedText.Trim());
+                        finder(richWsdl.SelectionStart+1, text);
                     });
-                    cm.MenuItems.Add(new MenuItem("Find: \""+richWsdl.SelectedText+"\"", eh1));
+                    cm.MenuItems.Add(new MenuItem("Find: \""+text+"\"", eh1));
+
+                    EventHandler eh2 = new EventHandler(delegate(object s, EventArgs ev)
+                    {
+                        Clipboard.SetText(richWsdl.SelectedText);
+                    });
+                    cm.MenuItems.Add(new MenuItem("Copy \"" + text + "\" to clipboard", eh2));
+                    EventHandler eh3 = new EventHandler(delegate(object s, EventArgs ev)
+                    {
+                        textBoxFind.Text = richWsdl.SelectedText;
+                    });
+                    cm.MenuItems.Add(new MenuItem("Copy \"" + text + "\" to find box", eh3));
                     cm.Show(richWsdl, e.Location);
                 }
             }
