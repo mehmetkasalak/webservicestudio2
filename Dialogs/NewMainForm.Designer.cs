@@ -255,8 +255,9 @@
             // comboEndPointUri
             // 
             this.comboEndPointUri.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboEndPointUri.Margin = new System.Windows.Forms.Padding(2, 0, 2, 1);
             this.comboEndPointUri.Name = "comboEndPointUri";
-            this.comboEndPointUri.Size = new System.Drawing.Size(500, 25);
+            this.comboEndPointUri.Size = new System.Drawing.Size(500, 24);
             this.comboEndPointUri.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboEndPointUri_KeyPress);
             // 
             // buttonGet
