@@ -139,28 +139,32 @@ namespace WebServiceStudio.Dialogs
 
         private void finder(int fromPosition, string text)
         {
+            int selection = richWsdl.SelectionStart;
 
-                if (fromPosition == -1)
-                {
-                    if (!stringToFind.Equals(text))
-                        richWsdl.SelectionStart = 0;
-                }
-                else
-                {
-                    richWsdl.SelectionStart = fromPosition;
-                }
+            if (fromPosition == -1)
+            {
+                if (!stringToFind.Equals(text))
+                    richWsdl.SelectionStart = 0;
+            }
+            else
+            {
+                richWsdl.SelectionStart = fromPosition;
+            }
 
-                stringToFind = text;
-                Find();
+            stringToFind = text;
+            if (!Find())
+                richWsdl.SelectionStart = selection;
         }
 
-        private void Find()
+        private bool Find()
         {
             if (!string.IsNullOrEmpty(stringToFind))
             {
                 tabMain.SelectedTab = tabPageWsdl;
-                richWsdl.Find(stringToFind, richWsdl.SelectionStart + richWsdl.SelectionLength, RichTextBoxFinds.None);
+                return (richWsdl.Find(stringToFind, richWsdl.SelectionStart + richWsdl.SelectionLength,
+                    RichTextBoxFinds.None) >= 0);
             }
+            return false;
         }
 
         private void buttonOptions_Click(object sender, EventArgs e)
