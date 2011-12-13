@@ -129,18 +129,29 @@ namespace WebServiceStudio.Dialogs
         {
             if (!string.IsNullOrEmpty(textBoxFind.Text))
             {
-                string text = textBoxFind.Text.Trim();
-
-                if (!stringToFind.Equals(text))
-                    richWsdl.SelectionStart = 0;
-
-                stringToFind = text;
-                Find();
+                finder(0, textBoxFind.Text.Trim());
             }
             else
             {
                 textBoxFind.Focus();
             }
+        }
+
+        private void finder(int fromPosition, string text)
+        {
+
+                if (fromPosition == 0)
+                {
+                    if (!stringToFind.Equals(text))
+                        richWsdl.SelectionStart = 0;
+                }
+                else
+                {
+                    richWsdl.SelectionStart = fromPosition;
+                }
+
+                stringToFind = text;
+                Find();
         }
 
         private void Find()
@@ -848,6 +859,23 @@ namespace WebServiceStudio.Dialogs
                     createTextDesciption(sb, treeInput.Nodes[0], level + 1);
             }
             return sb;
+        }
+
+        private void richWsdl_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(richWsdl.SelectedText))
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    ContextMenu cm = new ContextMenu();
+                    EventHandler eh1 = new EventHandler(delegate(object s, EventArgs ev)
+                    {
+                        finder(richWsdl.SelectionStart+1, richWsdl.SelectedText.Trim());
+                    });
+                    cm.MenuItems.Add(new MenuItem("Find: \""+richWsdl.SelectedText+"\"", eh1));
+                    cm.Show(richWsdl, e.Location);
+                }
+            }
         }
     }
 }

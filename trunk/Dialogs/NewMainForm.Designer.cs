@@ -712,6 +712,7 @@
             this.richWsdl.TabIndex = 0;
             this.richWsdl.Text = "";
             this.richWsdl.WordWrap = false;
+            this.richWsdl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.richWsdl_MouseUp);
             // 
             // panelLeftWsdl
             // 
