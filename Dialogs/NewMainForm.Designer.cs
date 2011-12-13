@@ -140,7 +140,7 @@
             this.buttonSaveAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonSaveAll.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveAll.Name = "buttonSaveAll";
-            this.buttonSaveAll.Size = new System.Drawing.Size(65, 21);
+            this.buttonSaveAll.Size = new System.Drawing.Size(66, 21);
             this.buttonSaveAll.Text = "Save All";
             this.buttonSaveAll.Click += new System.EventHandler(this.buttonSaveAll_Click);
             // 
@@ -150,7 +150,7 @@
             this.buttonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOptions.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(64, 21);
+            this.buttonOptions.Size = new System.Drawing.Size(63, 21);
             this.buttonOptions.Text = "Options";
             this.buttonOptions.Click += new System.EventHandler(this.buttonOptions_Click);
             // 
@@ -161,7 +161,7 @@
             this.buttonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonAbout.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAbout.Name = "buttonAbout";
-            this.buttonAbout.Size = new System.Drawing.Size(56, 21);
+            this.buttonAbout.Size = new System.Drawing.Size(55, 21);
             this.buttonAbout.Text = "About";
             this.buttonAbout.ToolTipText = "About";
             this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
@@ -173,7 +173,7 @@
             this.buttonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonCopy.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCopy.Name = "buttonCopy";
-            this.buttonCopy.Size = new System.Drawing.Size(52, 21);
+            this.buttonCopy.Size = new System.Drawing.Size(51, 21);
             this.buttonCopy.Text = "Copy";
             this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
@@ -194,7 +194,7 @@
             this.buttonOutputCopy.Image = ((System.Drawing.Image)(resources.GetObject("buttonOutputCopy.Image")));
             this.buttonOutputCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOutputCopy.Name = "buttonOutputCopy";
-            this.buttonOutputCopy.Size = new System.Drawing.Size(89, 22);
+            this.buttonOutputCopy.Size = new System.Drawing.Size(86, 22);
             this.buttonOutputCopy.Text = "Copy Output";
             this.buttonOutputCopy.Click += new System.EventHandler(this.buttonOutputCopy_Click);
             // 
@@ -229,7 +229,7 @@
             this.buttonMacroPlay.Image = ((System.Drawing.Image)(resources.GetObject("buttonMacroPlay.Image")));
             this.buttonMacroPlay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonMacroPlay.Name = "buttonMacroPlay";
-            this.buttonMacroPlay.Size = new System.Drawing.Size(79, 22);
+            this.buttonMacroPlay.Size = new System.Drawing.Size(80, 22);
             this.buttonMacroPlay.Text = "Play Macro";
             this.buttonMacroPlay.Click += new System.EventHandler(this.buttonMacroPlay_Click);
             // 
@@ -249,7 +249,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(80, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(85, 22);
             this.toolStripLabel1.Text = "WSDL EndPoint";
             // 
             // comboEndPointUri
@@ -276,7 +276,7 @@
             this.buttonBrowse.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonBrowse.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBrowse.Name = "buttonBrowse";
-            this.buttonBrowse.Size = new System.Drawing.Size(74, 21);
+            this.buttonBrowse.Size = new System.Drawing.Size(71, 21);
             this.buttonBrowse.Text = "Browse...";
             this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
@@ -316,7 +316,7 @@
             this.splitContainerInvoke.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainerInvoke.Location = new System.Drawing.Point(214, 0);
+            this.splitContainerInvoke.Location = new System.Drawing.Point(223, 0);
             this.splitContainerInvoke.Name = "splitContainerInvoke";
             this.splitContainerInvoke.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -327,7 +327,7 @@
             // splitContainerInvoke.Panel2
             // 
             this.splitContainerInvoke.Panel2.Controls.Add(this.splitContainerInvokeDown);
-            this.splitContainerInvoke.Size = new System.Drawing.Size(690, 610);
+            this.splitContainerInvoke.Size = new System.Drawing.Size(681, 610);
             this.splitContainerInvoke.SplitterDistance = 306;
             this.splitContainerInvoke.TabIndex = 5;
             // 
@@ -348,7 +348,7 @@
             // 
             this.splitContainerInvokeUp.Panel2.Controls.Add(this.labelInputValue);
             this.splitContainerInvokeUp.Panel2.Controls.Add(this.propInput);
-            this.splitContainerInvokeUp.Size = new System.Drawing.Size(677, 303);
+            this.splitContainerInvokeUp.Size = new System.Drawing.Size(674, 303);
             this.splitContainerInvokeUp.SplitterDistance = 338;
             this.splitContainerInvokeUp.TabIndex = 12;
             // 
@@ -360,7 +360,7 @@
             this.treeInput.HideSelection = false;
             this.treeInput.Location = new System.Drawing.Point(0, 22);
             this.treeInput.Name = "treeInput";
-            this.treeInput.Size = new System.Drawing.Size(338, 278);
+            this.treeInput.Size = new System.Drawing.Size(341, 278);
             this.treeInput.TabIndex = 11;
             this.treeInput.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeInput_AfterSelect);
             // 
@@ -414,8 +414,8 @@
             this.splitContainerInvokeDown.Panel2.Controls.Add(this.buttonInvoke);
             this.splitContainerInvokeDown.Panel2.Controls.Add(this.labelOutputValue);
             this.splitContainerInvokeDown.Panel2.Controls.Add(this.propOutput);
-            this.splitContainerInvokeDown.Size = new System.Drawing.Size(687, 298);
-            this.splitContainerInvokeDown.SplitterDistance = 339;
+            this.splitContainerInvokeDown.Size = new System.Drawing.Size(684, 298);
+            this.splitContainerInvokeDown.SplitterDistance = 338;
             this.splitContainerInvokeDown.TabIndex = 11;
             // 
             // labelOutput
@@ -434,7 +434,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.treeOutput.Location = new System.Drawing.Point(0, 25);
             this.treeOutput.Name = "treeOutput";
-            this.treeOutput.Size = new System.Drawing.Size(339, 273);
+            this.treeOutput.Size = new System.Drawing.Size(341, 273);
             this.treeOutput.TabIndex = 6;
             this.treeOutput.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeOutput_AfterSelect);
             // 
@@ -443,7 +443,7 @@
             this.buttonInvoke.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonInvoke.AutoSize = true;
             this.buttonInvoke.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonInvoke.Location = new System.Drawing.Point(244, 0);
+            this.buttonInvoke.Location = new System.Drawing.Point(245, 0);
             this.buttonInvoke.Name = "buttonInvoke";
             this.buttonInvoke.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.buttonInvoke.Size = new System.Drawing.Size(90, 23);
@@ -470,7 +470,7 @@
             this.propOutput.Location = new System.Drawing.Point(0, 25);
             this.propOutput.Name = "propOutput";
             this.propOutput.PropertySort = System.Windows.Forms.PropertySort.NoSort;
-            this.propOutput.Size = new System.Drawing.Size(334, 273);
+            this.propOutput.Size = new System.Drawing.Size(335, 273);
             this.propOutput.TabIndex = 6;
             this.propOutput.ToolbarVisible = false;
             // 
@@ -511,7 +511,7 @@
             this.toolStripButtonSort.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSort.Image")));
             this.toolStripButtonSort.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSort.Name = "toolStripButtonSort";
-            this.toolStripButtonSort.Size = new System.Drawing.Size(47, 22);
+            this.toolStripButtonSort.Size = new System.Drawing.Size(46, 22);
             this.toolStripButtonSort.Text = "Sort";
             this.toolStripButtonSort.Click += new System.EventHandler(this.toolStripButtonSort_Click);
             // 
@@ -521,7 +521,7 @@
             this.toolStripButtonSearch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSearch.Image")));
             this.toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.toolStripButtonSearch.Name = "toolStripButtonSearch";
-            this.toolStripButtonSearch.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButtonSearch.Size = new System.Drawing.Size(61, 22);
             this.toolStripButtonSearch.Text = "Search";
             this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
             // 
