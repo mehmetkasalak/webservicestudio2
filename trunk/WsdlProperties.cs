@@ -7,6 +7,7 @@
     [TypeConverter(typeof(ExpandableObjectConverter))]
     public class WsdlProperties
     {
+        private bool bypassCertificateValidation = false;
         private string customCodeDomProvider;
         private string domain;
         private Language language;
@@ -37,6 +38,19 @@
             return "";
         }
 
+        [XmlAttribute]
+        public bool BypassCertificateValidation
+        {
+            get
+            {
+                return this.bypassCertificateValidation;
+            }
+            set
+            {
+                this.bypassCertificateValidation = value;
+            }
+        }
+        
         [RefreshProperties(RefreshProperties.All), XmlAttribute]
         public string CustomCodeDomProvider
         {
