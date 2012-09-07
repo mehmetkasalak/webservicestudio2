@@ -144,27 +144,14 @@ namespace WebServiceStudio
             {
                 return new ArrayProperty(possibleTypes, name, val as Array);
             }
-            if (elementType.Name.IndexOf("Nullable") >= 0)
+            Type nullableType = Nullable.GetUnderlyingType(elementType);
+            if (nullableType != null)
             {
-                if (elementType.IsGenericType)
-                {
-                    int i1 = elementType.FullName.IndexOf("[[") + 2;
-                    int i2 = elementType.FullName.IndexOf(",");
-                    string typeName = elementType.FullName.Substring(i1, i2 - i1);
-                    //"System.Nullable`1[[System.DateTime, mscorlib
-                    //it's lame method but I have no another idea.
-                    possibleTypes[0] = Type.GetType(typeName);
-                    if (possibleTypes.Length > 1)
-                        possibleTypes[1] = null;
-                    return new NullableGenericProperty(possibleTypes, name, val);
-                }
-                else
-                {
-                    possibleTypes[0] = Type.GetType("System.String");
-                    if (possibleTypes.Length > 1)
-                        possibleTypes[1] = null;
-                    return new NullablePrimitiveProperty(possibleTypes, name, val);
-                }
+                possibleTypes[0] = nullableType;
+
+                if (possibleTypes.Length > 1)
+                    possibleTypes[1] = null;
+                return new NullableGenericProperty(possibleTypes, name, val);
             }
             return new ClassProperty(possibleTypes, name, val);
         }
